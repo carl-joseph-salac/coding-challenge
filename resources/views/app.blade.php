@@ -9,8 +9,8 @@
     @vite('resources/css/app.css')
 </head>
 
-<body>
-    <h1>Hello</h1>
+<body class="flex flex-col min-h-screen bg-gray-100 ">
+    @yield('content')
 </body>
 
 </html>
