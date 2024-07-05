@@ -12,6 +12,15 @@
                 @csrf
                 <label class="relative w-full form-control">
                     <div class="label">
+                        <span class="label-text">Name</span>
+                    </div>
+                    <input type="text" placeholder="Type here" class="w-full input input-bordered" />
+                    <div class="absolute label -bottom-7">
+                        <span class="hidden text-red-600 label-text-alt">Bottom Left label</span>
+                    </div>
+                </label>
+                <label class="relative w-full form-control">
+                    <div class="label">
                         <span class="label-text">Email</span>
                     </div>
                     <input type="email" placeholder="Type here" class="w-full input input-bordered" />
