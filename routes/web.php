@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CrudController;
+use App\Http\Middleware\UserOnly;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -24,14 +25,16 @@ Route::controller(AuthController::class)->group(function() {
     Route::post('/login-user', 'loginUser')->name('loginUser');
     Route::get('/register', 'showRegister')->name('showRegister');
     Route::post('/register-user', 'registerUser')->name('registerUser');
-    Route::post('/logout', 'logout')->name('logout');
+    Route::post('/logout', 'logout')->name('logout')->middleware(UserOnly::class);
 });
 
 Route::controller(CrudController::class)->group(function() {
-    Route::get('/home', 'showHome')->name('showHome');
+    Route::middleware(UserOnly::class)->group(function() {
+        Route::get('/home', 'showHome')->name('showHome');
     Route::get('/create', 'showCreate')->name('showCreate');
     Route::post('/save-info', 'saveInfo')->name('saveInfo');
     Route::get('/edit', 'showEdit')->name('showEdit');
     Route::post('/update-info', 'updateInfo')->name('updateInfo');
     Route::post('/delete', 'delete')->name('delete');
+    });
 });

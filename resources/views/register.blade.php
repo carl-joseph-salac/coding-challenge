@@ -14,30 +14,38 @@
                     <div class="label">
                         <span class="label-text">Name</span>
                     </div>
-                    <input type="text" placeholder="Type here" class="w-full input input-bordered" />
-                    <div class="absolute label -bottom-7">
-                        <span class="hidden text-red-600 label-text-alt">Bottom Left label</span>
-                    </div>
+                    <input class="w-full input input-bordered" name="name" value="{{ old('name') }}" type="text"
+                        placeholder="Type here" />
+                    @error('name')
+                        <div class="absolute label -bottom-7">
+                            <span class="text-red-600 label-text-alt">{{ $message }}</span>
+                        </div>
+                    @enderror
                 </label>
                 <label class="relative w-full form-control">
                     <div class="label">
                         <span class="label-text">Email</span>
                     </div>
-                    <input type="email" placeholder="Type here" class="w-full input input-bordered" />
-                    <div class="absolute label -bottom-7">
-                        <span class="hidden text-red-600 label-text-alt">Bottom Left label</span>
-                    </div>
+                    <input class="w-full input input-bordered" name="email" value="{{ old('email') }}" type=""
+                        placeholder="Type here" />
+                    @error('email')
+                        <div class="absolute label -bottom-7">
+                            <span class="text-red-600 label-text-alt">{{ $message }}</span>
+                        </div>
+                    @enderror
                 </label>
                 <label class="relative w-full form-control">
                     <div class="label">
                         <span class="label-text">Password</span>
                     </div>
-                    <input type="password" placeholder="Type here" class="w-full input input-bordered" />
-                    <div class="absolute label -bottom-7">
-                        <span class="hidden text-red-600 label-text-alt">Bottom Left label</span>
-                    </div>
+                    <input class="w-full input input-bordered" name="password" type="password" placeholder="Type here" />
+                    @error('password')
+                        <div class="absolute label -bottom-7">
+                            <span class="text-red-600 label-text-alt">{{ $message }}</span>
+                        </div>
+                    @enderror
                 </label>
-                <button type="submit" class="text-white btn btn-success">Create Account</button>
+                <button type="submit" class="mt-2 text-white btn btn-success">Create Account</button>
                 <a href="{{ route('showLogin') }}" class="link link-info">Already have an account?</a>
             </form>
         </main>
