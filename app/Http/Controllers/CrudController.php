@@ -2,13 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Crud;
 use Illuminate\Http\Request;
 
 class CrudController extends Controller
 {
     public function showHome()
     {
-        return view('home');
+        $infos = Crud::select('id', 'name', 'job', 'fav_color')->get();
+
+        return view('home', compact('infos'));
     }
 
     public function showCreate()
@@ -16,23 +19,40 @@ class CrudController extends Controller
         return view('create');
     }
 
-    public function saveInfo()
+    public function saveInfo(Request $request)
     {
-        return redirect()->route('showHome');
+        $infos = $request->validate([
+            'name' => 'required',
+            'job' => 'required',
+            'fav_color' => 'required'
+        ]);
+
+        Crud::create($infos);
+
+        return redirect()->route('showHome')->with('created', 'Created Successfully');
     }
 
-    public function showEdit()
+    public function showEdit(Crud $info)
     {
-        return view('edit');
+        return view('edit', compact('info'));
     }
 
-    public function updateInfo()
+    public function updateInfo(Request $request, Crud $info)
     {
-        return redirect()->route('showHome');
+        $data = $request->validate([
+            'name' => 'required',
+            'job' => 'required',
+            'fav_color' => 'required'
+        ]);
+
+        $info->update($data);
+
+        return redirect()->route('showHome')->with('updated', 'Updated Successfully');
     }
 
-    public function delete()
+    public function delete(Crud $info)
     {
-        return redirect()->route('showHome');
+        $info->delete();
+        return redirect()->route('showHome')->with('deleted', 'Deleted Successfully');
     }
 }

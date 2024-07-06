@@ -31,10 +31,10 @@ Route::controller(AuthController::class)->group(function() {
 Route::controller(CrudController::class)->group(function() {
     Route::middleware(UserOnly::class)->group(function() {
         Route::get('/home', 'showHome')->name('showHome');
-    Route::get('/create', 'showCreate')->name('showCreate');
-    Route::post('/save-info', 'saveInfo')->name('saveInfo');
-    Route::get('/edit', 'showEdit')->name('showEdit');
-    Route::post('/update-info', 'updateInfo')->name('updateInfo');
-    Route::post('/delete', 'delete')->name('delete');
+        Route::get('/create', 'showCreate')->name('showCreate');
+        Route::post('/save-info', 'saveInfo')->name('saveInfo');
+        Route::get('/{info}/edit', 'showEdit')->name('showEdit');
+        Route::put('/{info}/update-info', 'updateInfo')->name('updateInfo');
+        Route::delete('/{info}/delete', 'delete')->name('delete');
     });
 });

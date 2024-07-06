@@ -9,9 +9,9 @@
                     <summary>Menu</summary>
                     <ul class="p-2 rounded-t-none bg-base-100">
                         <li>
-                            <form action="{{ route('logout') }}" method="POST">
+                            <form class="w-20 px-0" action="{{ route('logout') }}" method="POST">
                                 @csrf
-                                <button type="submit">Logout</button>
+                                <button class="w-20 mx-auto " type="submit">Logout</button>
                             </form>
                         </li>
                     </ul>
