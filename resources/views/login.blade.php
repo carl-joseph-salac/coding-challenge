@@ -33,8 +33,8 @@
                     <div class="label">
                         <span class="label-text">Email</span>
                     </div>
-                    <input class="w-full input input-bordered" name="email" value="{{ old('email') }}" type=""
-                        placeholder="Type here" />
+                    <input class="w-full input input-bordered {{ $errors->has('email') ? 'input-error' : '' }}"
+                        name="email" value="{{ old('email') }}" type="" placeholder="Type here" />
                     @error('email')
                         <div class="absolute label -bottom-7">
                             <span class="text-red-600 label-text-alt">{{ $message }}</span>
@@ -45,7 +45,8 @@
                     <div class="label">
                         <span class="label-text">Password</span>
                     </div>
-                    <input class="w-full input input-bordered" name="password" type="password" placeholder="Type here" />
+                    <input class="w-full input input-bordered {{ $errors->has('password') ? 'input-error' : '' }}"
+                        name="password" type="password" placeholder="Type here" />
                     @error('password')
                         <div class="absolute label -bottom-7">
                             <span class="text-red-600 label-text-alt">{{ $message }}</span>

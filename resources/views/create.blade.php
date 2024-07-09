@@ -15,8 +15,8 @@
                     <div class="label">
                         <span class="label-text">Name</span>
                     </div>
-                    <input class="w-full input input-bordered" name="name" value="{{ old('name') }}" type="text"
-                        placeholder="Type here" />
+                    <input class="w-full input input-bordered {{ $errors->has('name') ? 'input-error' : '' }}" name="name"
+                        value="{{ old('name') }}" type="text" placeholder="Type here" />
                     @error('name')
                         <div class="absolute label -bottom-7">
                             <span class="text-red-600 label-text-alt">{{ $message }}</span>
@@ -27,8 +27,8 @@
                     <div class="label">
                         <span class="label-text">Job</span>
                     </div>
-                    <input class="w-full input input-bordered" name="job" value="{{ old('job') }}" type="text"
-                        placeholder="Type here" />
+                    <input class="w-full input input-bordered {{ $errors->has('job') ? 'input-error' : '' }}" name="job"
+                        value="{{ old('job') }}" type="text" placeholder="Type here" />
                     @error('job')
                         <div class="absolute label -bottom-7">
                             <span class="text-red-600 label-text-alt">{{ $message }}</span>
@@ -39,8 +39,8 @@
                     <div class="label">
                         <span class="label-text">Favorite Color</span>
                     </div>
-                    <input class="w-full input input-bordered" name="fav_color" value="{{ old('fav_color') }}"
-                        type="text" placeholder="Type here" />
+                    <input class="w-full input input-bordered {{ $errors->has('fav_color') ? 'input-error' : '' }}"
+                        name="fav_color" value="{{ old('fav_color') }}" type="text" placeholder="Type here" />
                     @error('fav_color')
                         <div class="absolute label -bottom-7">
                             <span class="text-red-600 label-text-alt">{{ $message }}</span>
