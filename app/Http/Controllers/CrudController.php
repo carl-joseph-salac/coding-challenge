@@ -24,9 +24,9 @@ class CrudController extends Controller
     public function saveInfo(Request $request): RedirectResponse
     {
         $infos = $request->validate([
-            'name' => 'required',
-            'job' => 'required',
-            'fav_color' => 'required'
+            'name' => 'required|string',
+            'job' => 'required|string',
+            'fav_color' => 'required|string'
         ]);
 
         Crud::create($infos);
@@ -42,9 +42,9 @@ class CrudController extends Controller
     public function updateInfo(Request $request, Crud $info): RedirectResponse
     {
         $data = $request->validate([
-            'name' => 'required',
-            'job' => 'required',
-            'fav_color' => 'required'
+            'name' => 'required|string',
+            'job' => 'required|string',
+            'fav_color' => 'required|string'
         ]);
 
         $info->update($data);

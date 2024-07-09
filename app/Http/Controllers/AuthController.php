@@ -20,7 +20,9 @@ class AuthController extends Controller
     {
         $credentials = $request->validate([
             'email' => 'required|email',
-            'password' => 'required|min:8'
+            'password' => ['required', 'min:8', 'regex:/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/']
+        ],[
+            'password.regex' => 'At least one uppercase, one lowercase, one digit, and one special character.'
         ]);
 
         if (Auth::attempt($credentials)) {
@@ -38,9 +40,12 @@ class AuthController extends Controller
     public function registerUser(Request $request): RedirectResponse
     {
         $request->validate([
-            'name' => 'required|string|regex:/^[a-zA-Z\s]+$/|max:50',
+            'name' => ['required', 'regex:/^(?![\s\.\-]+$)[a-zA-Z\s\.\-]+$/', 'max:50'],
             'email' => 'required|email|unique:users',
-            'password' => 'required|min:8'
+            'password' => ['required', 'min:8', 'regex:/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/']
+        ],[
+            'name.regex' => 'The name field may only contain letters, spaces, dots, and dashes.',
+            'password.regex' => 'At least one uppercase, one lowercase, one digit, and one special character.'
         ]);
 
         User::create([
