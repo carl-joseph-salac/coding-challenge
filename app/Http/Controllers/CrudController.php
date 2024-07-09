@@ -3,11 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Models\Crud;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\View\View;
 
 class CrudController extends Controller
 {
-    public function showHome()
+    public function showHome(): View
     {
         $infos = Crud::select('id', 'name', 'job', 'fav_color')->get();
 
@@ -19,7 +21,7 @@ class CrudController extends Controller
         return view('create');
     }
 
-    public function saveInfo(Request $request)
+    public function saveInfo(Request $request): RedirectResponse
     {
         $infos = $request->validate([
             'name' => 'required',
@@ -32,12 +34,12 @@ class CrudController extends Controller
         return redirect()->route('showHome')->with('created', 'Created Successfully');
     }
 
-    public function showEdit(Crud $info)
+    public function showEdit(Crud $info): View
     {
         return view('edit', compact('info'));
     }
 
-    public function updateInfo(Request $request, Crud $info)
+    public function updateInfo(Request $request, Crud $info): RedirectResponse
     {
         $data = $request->validate([
             'name' => 'required',
@@ -50,7 +52,7 @@ class CrudController extends Controller
         return redirect()->route('showHome')->with('updated', 'Updated Successfully');
     }
 
-    public function delete(Crud $info)
+    public function delete(Crud $info): RedirectResponse
     {
         $info->delete();
         return redirect()->route('showHome')->with('deleted', 'Deleted Successfully');
